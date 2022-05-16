@@ -1,0 +1,25 @@
+// Algorithm
+Step1-> trailingZero <- divide number by 5
+Step2-> loop for all powers of 5 and sum <- n/allPowers
+Step3-> return (sum + trailingZero)  
+
+
+class Solution {
+    int remainingFive(int n){
+        int sum = 0;
+        for(int i=25;i<=n;i*=5){
+            if(n>=i){
+               sum+= n/i; 
+            }
+        }
+        return sum;
+    }
+    public int trailingZeroes(int n) {
+       if(n<5){
+           return 0;
+       }
+       int totalNumberOfTrailingZeroes = 0;
+        totalNumberOfTrailingZeroes = n/5 + remainingFive(n);
+        return totalNumberOfTrailingZeroes;
+    }
+}
