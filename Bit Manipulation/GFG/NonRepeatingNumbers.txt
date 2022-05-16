@@ -5,9 +5,8 @@
 // -> Xor x and array value whose bit at position corresponding to set bit of n & -n is same
 // -> else XOR x and remaining array elements
 // -> return x and y 
-package GFG;
 
-class Solution {
+class NonRepeatingNumbers {
     static int Log(int value, int base) {
         return (int) (Math.log(value) / Math.log(base));
     }
@@ -44,6 +43,6 @@ class Solution {
 
     public static void main(String[] args) {
         int[] a = { 3, 2, 2, 3, 1, 8 };
-        System.out.println(singleNumber(a));
+        System.out.println(singleNumber(a)[1]);
     }
 }

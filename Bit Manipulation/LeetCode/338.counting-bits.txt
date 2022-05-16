@@ -1,0 +1,5 @@
+
+// Make a table 0f 255 array size and store all set bits from 1 to 255 in their
+// corresponding index
+
+// Important --> table[i] = (i & 1) + table[i / 2];
