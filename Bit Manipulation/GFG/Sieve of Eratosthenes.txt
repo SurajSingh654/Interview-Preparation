@@ -1,0 +1,35 @@
+Question-Link: https://practice.geeksforgeeks.org/problems/sieve-of-eratosthenes5242/1
+
+Algorithm
+
+Step1 -> Create an boolean array of size 'n' with initial true value ...
+Step2 -> loop upto Root{n} and mark all their multiple from 1 to Root{n} false... Remianing all are prime numbers
+
+
+class Solution{
+    static ArrayList<Integer> sieveOfEratosthenes(int N){
+        // code here
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+       
+        boolean boolArray[] = new boolean[N+1];
+        Arrays.fill(boolArray,true);
+        
+        boolArray[0] = false;
+        boolArray[1] = false;
+        
+        for(int i=2;i*i<=N;i++){
+            for(int j=2*i;j<=N;j+=i){
+               boolArray[j]=false;
+            }
+        }
+       
+        for(int i=2;i<=N;i++){
+            if(boolArray[i]){
+                arrayList.add(i);
+            }
+        }
+        return arrayList;
+        
+        
+    }
+}
