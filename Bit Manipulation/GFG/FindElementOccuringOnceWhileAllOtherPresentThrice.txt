@@ -3,10 +3,7 @@
 // -> Increment +1 at corresponding array position based on set bit of individual given array element
 // -> % each arr element by 3 
 // -> Find integer value from remaining set bits in arr
-5^2->25 {1 extra 5}
-5^3->125 {2 extra 5}
-5^4->625 {3 extra 5}
-5^5->3125 {4 extra 5}...
+
 class Solution{
     int Log(int value,int base){
         return (int)(Math.log(value)/Math.log(base));
