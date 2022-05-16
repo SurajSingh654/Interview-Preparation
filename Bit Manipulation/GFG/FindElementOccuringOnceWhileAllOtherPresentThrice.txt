@@ -1,0 +1,60 @@
+// Algorithm
+// -> Create an int array of 32 size say, arr
+// -> Increment +1 at corresponding array position based on set bit of individual given array element
+// -> % each arr element by 3 
+// -> Find integer value from remaining set bits in arr
+5^2->25 {1 extra 5}
+5^3->125 {2 extra 5}
+5^4->625 {3 extra 5}
+5^5->3125 {4 extra 5}...
+class Solution{
+    int Log(int value,int base){
+        return (int)(Math.log(value)/Math.log(base));
+    }
+        int singleElement(int arr[] ,int N) {
+        int value = 0;
+        int a ;
+        int thirtyTwoBitArray[] = new int[32];
+        for(int i=0;i<N;i++){
+            if(arr[i]<0)
+                a=(-arr[i]);
+            else
+                a = arr[i];
+               while((a & (a-1))>=0 && a!=0){
+            // Position of only set bit
+            int v = (a & (~(a-1)));
+            ++thirtyTwoBitArray[Log(v,2)];
+             if((a&(a-1))==0)
+              break;
+            a = a & (a-1);
+        }
+       
+        }
+     
+        for(int i=0;i<thirtyTwoBitArray.length;i++){
+            // System.out.println(thirtyTwoBitArray[i]);
+            if(thirtyTwoBitArray[i]%3==0){
+                thirtyTwoBitArray[i]=0;
+            }else{
+                thirtyTwoBitArray[i]=1;
+            }
+        }
+         for(int i=0;i<thirtyTwoBitArray.length;i++){
+            // System.out.println(thirtyTwoBitArray[i]);
+            if(thirtyTwoBitArray[i]==1){
+                value+=Math.pow(2,i);
+            }
+              
+        }
+        // System.out.println(value);
+        //  System.out.println(Arrays.binarySearch(arr, value));
+        // for(int i =0;i<N;i++){
+        //     System.out.println(arr[i]);
+        // }
+        for(int i=0;i<N;i++){
+            if(arr[i]==value)
+             return value;
+        }
+        return -value;
+    }
+}
