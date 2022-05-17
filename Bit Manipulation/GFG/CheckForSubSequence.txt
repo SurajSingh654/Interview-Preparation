@@ -1,0 +1,22 @@
+Link --> https://practice.geeksforgeeks.org/problems/check-for-subsequence4930/1#
+
+Approach --> Match first character from string{Given} note its character index{i} and now match next character from  i+1 to last and so on...
+
+Solution! 
+
+class Solution{
+    boolean isSubSequence(String A, String B){
+        int startIndex = 0;
+       for(int i=0;i<A.length();i++){
+           int matchingIndex = B.substring(startIndex,B.length()).indexOf(A.charAt(i));
+           if(matchingIndex>=0){
+               startIndex+=(matchingIndex + 1);
+               continue;
+           }else{
+               return false;
+           }
+       }
+       return true;
+      
+    }
+}
