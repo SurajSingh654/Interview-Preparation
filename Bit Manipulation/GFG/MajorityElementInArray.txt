@@ -1,0 +1,24 @@
+Link --> https://practice.geeksforgeeks.org/problems/majority-element-1587115620/1#
+
+Approach --> Use HashMap to store unique elements and their frequency
+
+
+
+
+class Solution
+{
+    static int majorityElement(int a[], int size)
+    {
+        // your code here
+        Map<Integer, Integer> hm = new HashMap<>();
+        for(int element:a){
+            hm.put(element,hm.getOrDefault(element, 0)+1);
+        }
+        for (Map.Entry<Integer,Integer> entry : hm.entrySet()) {
+            if(entry.getValue()>(size>>1)){
+                return entry.getKey();
+            }
+        }
+        return -1;
+    }
+}
