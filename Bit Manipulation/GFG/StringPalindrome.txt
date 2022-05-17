@@ -1,0 +1,17 @@
+--> String is palindrome : Use recursion , check 0th and last index if they are equal call same fn for index 1 to length-1
+
+
+class Solution {
+    int isPalindrome(String S) {
+        // code here
+        if(S.length()==1 || S.length()==0){
+            return 1;
+        }
+        
+        if(S.charAt(0)==S.charAt(S.length()-1)){
+            return isPalindrome(S.substring(1,S.length()-1));
+        }else{
+            return 0;
+        }
+    }
+};
