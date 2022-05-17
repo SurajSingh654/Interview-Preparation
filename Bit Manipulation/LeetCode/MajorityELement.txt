@@ -1,0 +1,22 @@
+Link --> https://leetcode.com/problems/majority-element/
+
+Approach: Moore's Voting Algorithm --> Select candidate one as a winner if it again come increase count i.e, count++ else count-- . If count = 0 appoint new cadidate as a winner .. At last if count is greater than zero then we iterate an array for same element and count it's frequency... If it is grater than n/2 then return array element otherwise -1
+
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        //Method1:
+        int majority = nums[0];
+        int count = 1;
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]==majority){
+                count++;
+            }else{
+                count--;
+            }
+            if(count==0){
+                majority = nums[i];
+                count = 1;
+            }
+        }
+       return majority;

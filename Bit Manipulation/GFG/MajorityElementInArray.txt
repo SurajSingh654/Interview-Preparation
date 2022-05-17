@@ -1,5 +1,9 @@
 Link --> https://practice.geeksforgeeks.org/problems/majority-element-1587115620/1#
 
+
+Moore's Voting --> https://www.geeksforgeeks.org/boyer-moore-majority-voting-algorithm/
+
+
 Approach --> Use HashMap to store unique elements and their frequency
 
 

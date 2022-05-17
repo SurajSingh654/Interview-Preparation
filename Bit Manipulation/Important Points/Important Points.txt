@@ -26,3 +26,5 @@ Value of Counter            Subset
    110                    -> bc
    111                    -> abc
 
+
+--> When question is saying to use space mostly their hashmap or memoization is used!
