@@ -1,0 +1,71 @@
+Link --> https://practice.geeksforgeeks.org/problems/power-set4302/1
+
+Approach1 --> --> Set  = [a,b,c]
+power_set_size = pow(2, 3) = 8
+Run for binary counter = 000 to 111
+
+Value of Counter            Subset
+   000                    -> Empty set
+   001                    -> a
+   010                    -> b
+   011                    -> ab
+   100                    -> c
+   101                    -> ac
+   110                    -> bc
+   111                    -> abc
+ Use this method to get all subsets ans sort the list then return
+
+
+Solution1: 
+
+class Solution
+{
+    int Log(int value){
+        return (int)(Math.log(value)/Math.log(2));
+    }
+    public List<String> AllPossibleStrings(String s)
+    {
+        // Code here
+        char[] ch = s.toCharArray();
+        List<String> list=new ArrayList<String>();
+        for(int i=1;i<Math.pow(2,s.length());i++){
+            int n = i;
+            StringBuilder str
+            = new StringBuilder();
+            while(n>0){
+               str.append(ch[Log((n&(~(n-1))))]) ;
+               n = (n&(n-1));
+            }
+            list.add(str.toString());
+        }
+        Collections.sort(list);
+        return list;
+    }
+}
+
+Approach2 --> Start from element one and you have two choices either select it or reject it!
+
+
+Solution2: 
+
+class Solution
+{
+    List<String> list = new ArrayList<String>();
+  void powerset(String s,int index,String current){
+      if(index==s.length()){
+          list.add(current);
+          return;
+      }
+      powerset(s,index+1,current+s.charAt(index));
+      powerset(s,index+1,current);
+  }
+    public List<String> AllPossibleStrings(String s)
+    {
+        // Code here
+        powerset(s,0,"");
+        list.remove(list.size()-1);
+        Collections.sort(list);
+        return list;
+       
+    }
+}
