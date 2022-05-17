@@ -6,4 +6,8 @@
           }
 
  --> {a+b}%n => (a%n + b%n)%n;  same for { - and * }
- 
+
+ --> Josephus Problem : f(n,k) = (f(n-1,k)+k)%n; {If index start from 0}
+
+ --> String is palindrome : Use recursion , check 0th and last index if they are equal call same fn for index 1 to length-1
+
