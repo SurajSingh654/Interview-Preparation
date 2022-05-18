@@ -1,0 +1,25 @@
+Link --> https://practice.geeksforgeeks.org/problems/chocolate-distribution-problem3825/1#
+
+Approach! Sort all the chocolate packets in ascending order , then check for the minimum difference for first and last packets
+
+Solution!
+
+class Solution
+{
+    public long findMinDiff (ArrayList<Integer> a, int n, int m)
+    {
+        // your code here
+        Collections.sort(a);
+        // System.out.println(a);
+        int startIndex = 0;
+        int endIndex = m-1;
+        long min = a.get(endIndex++)-a.get(startIndex++);
+        while(endIndex<=n-1){
+            int newMin = a.get(endIndex++)-a.get(startIndex++);
+            if(min>newMin){
+                min=newMin;
+            }
+        }
+        return min;
+    }
+}
