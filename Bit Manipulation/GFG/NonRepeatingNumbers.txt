@@ -30,6 +30,8 @@ class NonRepeatingNumbers {
             }
         }
 
+
+        // return in ascending order
         if (oneAtPos > zeroAtPos) {
             values[1] = oneAtPos;
             values[0] = zeroAtPos;

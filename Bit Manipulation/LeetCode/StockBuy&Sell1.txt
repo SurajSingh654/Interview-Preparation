@@ -1,0 +1,39 @@
+Link --> https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+
+Approach1: Create an auxiliary array and store maxProfit from last to each index...Compare eachStocks with auxiliary array and store Max <- auxiliary{i}-eachStocks{i}
+
+Approach2: Create two variable minSoFar and maxProfit , start from index 0 , suppose you have to sell stock today So, calc minSoFar from privous array and compare their subtraction with current index value with maxProfit if maxProfit is less then update it...
+
+
+class Solution {
+    // public int maxValue(int[] arr,int startIndex){
+    //     int max = arr[startIndex];
+    //     for(int i=startIndex+1;i<arr.length;i++){
+    //         max = Math.max(max,arr[i]);
+    //     }
+    //     // System.out.println(max);
+    //     return max-arr[startIndex];
+    // }
+
+    
+    
+    public int maxProfit(int[] prices) {
+        //Method1:
+        int length = prices.length;
+        // int maxProfit = 0;
+        // for(int i=length-1;i>=0;i--){
+        //     maxProfit = Math.max(maxProfit,maxValue(prices,i));
+        // }
+        // return maxProfit;
+        
+        //Method2:
+        int minPriceSoFar = prices[0];
+        int maxProfit = 0;
+        for(int i=1;i<length;i++){
+            minPriceSoFar = Math.min(minPriceSoFar,prices[i]);
+            int profit = prices[i]+(~minPriceSoFar+1);
+            maxProfit = Math.max(maxProfit,profit);
+        }
+        return maxProfit;
+    }
+}

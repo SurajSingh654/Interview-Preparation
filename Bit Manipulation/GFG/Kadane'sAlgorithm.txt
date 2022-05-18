@@ -1,12 +1,12 @@
 Link --> https://practice.geeksforgeeks.org/problems/kadanes-algorithm-1587115620/1#
 
 Approach : Kadane's Algorithm --> Starting from first element store sumOfElements in currentSum 
-Take a variable maxSum , store currentSum value in iif it's previous value is less than current sum
+Take a variable maxSum , store currentSum value in it if it's previous value is less than current sum
 if currentSum <0 then make currentSum = 0
 
 
 long maxSubarraySum(int arr[], int n){
-          int res = arr[0];
+         int res = arr[0];
        int maxEnding = arr[0];
        for(int i = 1 ; i<n ; i++) {
            maxEnding = Math.max(maxEnding+arr[i] , arr[i]);
