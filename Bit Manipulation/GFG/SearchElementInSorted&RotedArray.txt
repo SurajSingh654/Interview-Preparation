@@ -1,0 +1,44 @@
+Link --> https://practice.geeksforgeeks.org/problems/search-in-a-rotated-array0959/1/#
+
+
+
+Approach! Find the pivotElementIndex{Index From where the array is rotated}
+If pivotElementIndex = -1 means array is not rotated So, find element directly using binarySearch
+else binarySearch in {index 0 to pivotElementIndex+1}  and {pivotElementIndex+1 to array.length}
+return searchedIndex {if >=0 return index, else return -1}
+Solution! 
+class Solution 
+{ 
+    static int searchPivot(int arr[]){
+        for(int i=1;i<arr.length;i++){
+            if(arr[i-1]>arr[i]){
+                return i-1;
+            }
+        }
+        return -1;
+    }
+    static int Search(int array[], int target)
+	{
+	    // code here
+	    int pivotIndex = searchPivot(array);
+	    int index = -1;
+	    if(pivotIndex==-1){
+	        int x = Arrays.binarySearch(array,target);
+	        if(x>=0){
+	            index = x;
+	        }
+	    }else{
+	        int y = Arrays.binarySearch(array,0,pivotIndex+1,target);
+	        if(y>=0){
+	            index = y;
+	        }
+	        int z = Arrays.binarySearch(array,pivotIndex+1,array.length,target);
+	        if(z>=0){
+	            index = z;
+	        }
+	        
+	        
+	    }
+	    return index;
+	}
+} 
