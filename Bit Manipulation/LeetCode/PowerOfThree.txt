@@ -1,0 +1,29 @@
+Link --> https://leetcode.com/problems/power-of-three/
+
+Approach1 --> Brute-Force: Multiply 3 by itself until you get number>=Given Value
+
+Approach2 --> Convert Number in Base 3. Bit-Manipulation, as we know any powerOfThree value has only one set-Bit{in base 3}
+
+Approach3 --> As Given Constraint is 2^31 so check last value which is less than 2^31 and also a power of three . Divide Given number by itself to check powerOfThree or not
+
+
+class Solution {
+    int power(int x,int y){
+        int res = 1;
+        while(y>0){
+            if((y&1)!=0){
+                res = res*x;
+        }
+            x = x*x;
+            y=y>>1;
+       }
+        return res;
+    }
+    int log(int a,int b){
+        return (int)(Math.log(a)/Math.log(b));
+   }
+    public boolean isPowerOfThree(int n) {
+        int maxValuePowerThree = power(3,log(Integer.MAX_VALUE,3));
+        return n>0 && maxValuePowerThree%n==0;
+    }
+}
