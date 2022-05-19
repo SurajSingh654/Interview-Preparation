@@ -1,0 +1,21 @@
+Link --> https://leetcode.com/problems/power-of-four/submissions/
+
+Approach1 --> Brute-Force: Multiply 4 by itself until you get number>=Given Value
+
+Approach2 --> Convert Number in Base 4. Bit-Manipulation, as we know any powerOfFour value has only one set-Bit{in base 4}
+
+Approach3 --> As Given Constraint is 2^31 so check last value which is less than 2^31 and also a power of four . Divide Given number by itself to check powerOfFour or not
+
+
+class Solution {
+    public boolean isPowerOfFour(int n) {
+        if(n==0 || n==2){
+            return false;
+        }
+        if(n==-Math.pow(2,31)){
+            return false;
+        }
+        int num = Math.abs(n);
+        return ((n & (n-1))==0) && ((Math.log(n)/Math.log(2))%2)==0;
+    }
+}
