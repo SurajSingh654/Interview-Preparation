@@ -7,6 +7,16 @@
 
  --> {a+b}%n => (a%n + b%n)%n;  same for { - and * }
 
+ --> (a / b) % m = (a * (inverse of b if exists)) % m
+
+ --> The modular inverse of a mod m exists only if a and m are relatively prime i.e. gcd(a, m) = 1.
+Hence, for finding inverse of a under modulo m,
+if (a x b) mod m = 1 then b is modular inverse of a.
+Example:
+a = 5, m = 7
+(5 x 3) % 7 = 1
+hence, 3 is modulo inverse of 5 under 7.
+
  --> Josephus Problem : f(n,k) = (f(n-1,k)+k)%n; {If index start from 0}
 
  --> String is palindrome : Use recursion , check 0th and last index if they are equal call same fn for index 1 to length-1
