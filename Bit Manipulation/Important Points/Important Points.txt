@@ -38,3 +38,13 @@ Value of Counter            Subset
 
 
 --> When question is saying to use space mostly their hashmap or memoization is used!
+
+--> In C (and many other languages like C++, Java etc), 2-D arrays are stored in row-major order.(though Pascal and Fortran follows column major order)
+
+--> Prefix & Suffix sum array
+
+TODO:  Taylor Series using Recursion
+TODO:  Taylor Series using Horner's Rule
+TODO:  Fibonnacci Series using Recursion & Memoization 
+TODO:  nCr using Recursion and Pascal Triangle 
+TODO:  Tower Of Hanoi using Recursion
