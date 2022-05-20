@@ -1,0 +1,31 @@
+Link --> https://practice.geeksforgeeks.org/problems/subarray-with-0-sum-1587115621/1
+
+
+Approach --> Use prefixArray concept and check if any number is repeated in it or contain value 0 then return true else false ...
+
+class Solution{
+    //Function to check whether there is a subarray present with 0-sum or not.
+    static boolean findsum(int arr[],int n)
+    {
+        //Your code here
+        int prefixSumArray[] = new int[n];
+        prefixSumArray[0] = arr[0];
+        if(arr[0]==0){
+            return true;
+        }
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(arr[0],1);
+        for(int i=1;i<n;i++){
+            prefixSumArray[i] = prefixSumArray[i-1]+arr[i];
+            if(prefixSumArray[i]==0){
+                return true;
+            }
+            if(map.containsKey(prefixSumArray[i])){
+                return true;
+            }else{
+                map.put(prefixSumArray[i],1);
+            }
+            
+        }
+        return false;
+    }
