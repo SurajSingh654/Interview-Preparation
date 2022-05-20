@@ -1,0 +1,23 @@
+Link --> https://leetcode.com/problems/find-pivot-index/
+
+Approach --> Use the concept of prefixArray and suffixArray
+
+class Solution {
+    public int pivotIndex(int[] nums) {
+        int length = nums.length;
+        int prefixArray[] = new int[length];
+        int suffixArray[] = new int[length];
+        prefixArray[0] = nums[0];
+        suffixArray[length-1] = nums[length-1];
+        for(int i =1,j=length-2;i<length;i++,j--){
+            prefixArray[i] = prefixArray[i-1]+nums[i];
+            suffixArray[j] = suffixArray[j+1]+nums[j];
+       }
+        for(int i=0;i<length;i++){
+            if(prefixArray[i]==suffixArray[i]){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
