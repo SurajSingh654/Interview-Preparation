@@ -1,0 +1,31 @@
+Link --> https://www.interviewbit.com/problems/occurence-of-each-number/
+
+Question --> You are given an integer array A.
+
+You have to find the number of occurences of each number.
+
+Return an array containing only the occurences with the smallest value's occurence first.
+
+For example, A = [4, 3, 3], you have to return an array [2, 1], where 2 is the number of occurences for element 3, 
+and 1 is the number of occurences for element 4. But, 2 comes first because 3 is smaller than 4.
+
+Approach --> Sort the arrayList then ,Use LinkedHashMap to store frequency of each element {as we have to maintain the insertion-order}
+
+
+Solution --> 
+public class Solution {
+    public ArrayList<Integer> findOccurences(ArrayList<Integer> A) {
+        Map<Integer,Integer> hm = new LinkedHashMap<Integer,Integer>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        Collections.sort(A);
+        for(int i=0;i<A.size();i++){
+            hm.put(A.get(i),hm.getOrDefault(A.get(i),0)+1);
+        }
+       for(Map.Entry<Integer,Integer> entry:hm.entrySet()){
+        //    System.out.println(entry.getKey()+" "+entry.getValue());
+           list.add(entry.getValue());
+       }
+    //    Collections.sort(list);
+       return list;
+    }
+}
