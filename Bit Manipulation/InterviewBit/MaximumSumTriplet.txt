@@ -1,0 +1,86 @@
+Link --> https://www.interviewbit.com/problems/maximum-sum-triplet/
+
+Question --> Given an array A containing N integers.
+
+You need to find the maximum sum of triplet ( Ai + Aj + Ak ) such that 0 <= i < j < k < N and Ai < Aj < Ak.
+
+If no such triplet exist return 0.
+
+
+Approach1 --> To traverse for every triplet with three nested ‘for loops’ and find update the sum of all triplets one by one. Time complexity of this approach is O(N3) which is not sufficient for larger value of ‘N’.
+
+Approach2 --> To make further optimization in above approach.
+Instead of traversing through every triplets with three nested loops, we can traverse through two nested loops.
+While traversing through each number(assume as middle element(Aj)), find maximum number(Ai) smaller than Aj preceding it and maximum number(Ak) greater than Aj beyond it.
+Now after that, update the maximum answer with calculated sum of Ai + Aj + Ak.
+
+Approach3{Best Approach} --> Best and efficient approach is use the concept of maximum suffix-array and binary search.
+
+ **> For finding maximum number greater than given number beyond it, we can maintain a maximum suffix-array array such that for any number(suffix[i]) it would contain maximum number from index i, i+1, … N-1. Suffix array can be calculated in O(N) time.
+
+ **> For finding maximum number smaller than the given number preceding it, we can maintain a sorted list of numbers before a given number such we can simply perform a binary search to find a number which is just smaller than the given number.
+
+ Solution 
+
+ public class Solution {
+    public int solve(ArrayList<Integer> A) {
+        // int max = 0;
+        // for(int i=1;i<A.size()-1;i++){
+        //     int midElement = A.get(i);
+        //     int prevElement =0;
+        //     int nextElement =0;
+        //     for(int j=i-1;j>=0;j--){
+        //         if((midElement-A.get(j))>0){
+        //            prevElement = Math.max(prevElement,A.get(j));  
+        //         }
+        //     }
+        //     for(int k=i+1;k<A.size();k++){
+        //         if((A.get(k)-midElement)>0){
+        //               nextElement = Math.max(nextElement,A.get(k));
+        //         }
+        //     }
+        //     if(prevElement>0 && nextElement>0){
+        //          max = Math.max(max,prevElement+midElement+nextElement);
+        //     }
+            
+           
+        // }
+        // return max;
+        int n = A.size();
+         int maxSuffArr[] = new int[n + 1];
+ 
+    // Set the last element
+    maxSuffArr[n] = 0;
+ 
+    // Calculate suffix-array containing maximum
+    // value for index i, i+1, i+2, ... n-1 in
+    // arr[i]
+    for(int i = n - 1; i >= 0; --i)
+        maxSuffArr[i] = Math.max(maxSuffArr[i + 1],
+                                        A.get(i));
+ 
+    int ans = 0;
+ 
+    // Initialize set container
+    TreeSet<Integer> lowValue = new TreeSet<Integer>();
+ 
+    // Insert minimum value for first comparison
+    // in the set
+    lowValue.add(Integer.MIN_VALUE);
+ 
+    for(int i = 0; i < n - 1; ++i)
+    {
+        if (maxSuffArr[i + 1] > A.get(i))
+        {
+            ans = Math.max(ans, lowValue.lower(A.get(i)) +
+                           A.get(i) + maxSuffArr[i + 1]);
+ 
+            // Insert arr[i] in set<> for further
+            // processing
+            lowValue.add(A.get(i));
+        }
+    }
+    return ans;
+    }
+}
+ 
