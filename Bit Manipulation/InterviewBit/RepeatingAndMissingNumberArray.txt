@@ -1,0 +1,42 @@
+Link --> https://www.interviewbit.com/problems/repeat-and-missing-number-array/
+
+
+Question --> You are given a read only array of n integers from 1 to n.
+
+Each integer appears exactly once except A which appears twice and B which is missing
+
+Approach1 --> Use concept of {Remaining Sum + A + B}-{Remaining Sum + A + A}, from there you get A-B . Now use A^2 - B^2 to get A+B and proceed
+
+Approach2 --> Use HashTable{Store Value as Key and isRepeated(boolean) as Value}
+
+Approach3 --> Use XOR concept
+
+All Approaches --> https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/
+
+Solution 
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public ArrayList<Integer> repeatedNumber(final List<Integer> A) {
+         Map<Integer, Boolean> numberMap
+            = new HashMap<>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        int max = A.size();
+ 
+        for (Integer i : A) {
+ 
+            if (numberMap.get(i) == null) {
+                numberMap.put(i, true);
+            }
+            else {
+                list.add(i);
+            }
+        }
+        for (int i = 1; i <= max; i++) {
+            if (numberMap.get(i) == null) {
+                list.add(i);
+            }
+        }
+        return list;
+    }
+}
+
