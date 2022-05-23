@@ -1,4 +1,4 @@
-Link --> https://www.interviewbit.com/tutorial/bubble-sort/
+Link --> https://www.geeksforgeeks.org/bubble-sort/
 
 --> Bubble Sort sorted the array in sorted and unsorted partition ...
 
@@ -7,6 +7,8 @@ Link --> https://www.interviewbit.com/tutorial/bubble-sort/
 --> O(n^2) time complexity ...
 
 --> Stable Algorithm
+
+--> Bubble Sort is further optimized using isSwapped variable ...
 
 
 Implementation of Bubble Sort in Java:
