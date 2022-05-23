@@ -1,0 +1,90 @@
+Link --> https://www.interviewbit.com/problems/count-and-say/
+
+Question --> The count-and-say sequence is the sequence of integers beginning as follows: 
+1, 11, 21, 1211, 111221, ...
+1 is read off as one 1 or 11. 11 is read off as two 1s or 21.
+21 is read off as one 2, then one 1 or 1211.
+
+Given an integer n, generate the nth sequence.
+
+Note: The sequence of integers will be represented as a string.
+
+Approach --> TO get the nth String we have to track the (n-1)th string ...
+
+Solution1 : {Use of StringBuilder}
+
+public class Solution {
+	public String countAndSay(int A) {
+	    
+	    StringBuilder res = new StringBuilder("1");
+	    int count;
+	    char num;
+	    StringBuilder last = new StringBuilder("1");
+	    
+	    if (A < 1)
+	        return "";
+	    
+	    for (int i = 1; i < A; i++) {
+	        
+	        int idx = 0;
+	        int n = last.length();
+	        res = new StringBuilder();
+	        
+	        while (idx < n) {
+	            
+	            num = last.charAt(idx);
+	            count = 1;
+	            idx++;
+	            
+	            while (idx < n && last.charAt(idx) == num) {
+	                idx++;
+	                count++;
+	            }
+	            
+	            res.append(String.valueOf(count));
+	            res.append(String.valueOf(num));
+	            
+	        }
+	        
+	        last = res;
+	    }
+	    
+	    
+	    return res.toString();
+	}
+}
+
+
+Solution2: 
+
+public class Solution {
+             public static String nextString(String prev){
+             if(prev.length()==1){
+                 return "1".concat(String.valueOf(prev.charAt(0)));
+             }
+        int count = 1;
+        int value = prev.charAt(0)-'0';     
+        String s = "";
+        for(int i=1;i<prev.length();i++){
+             if(prev.charAt(i-1)==prev.charAt(i)){
+                count++;
+             }else{
+                s = s.concat(String.join("",String.valueOf(count),String.valueOf(value)));
+                value = prev.charAt(i)-'0';
+                count = 1;
+             }
+        }
+        s = s.concat(String.join("",String.valueOf(count),String.valueOf(value)));
+        return s;
+    } 
+    
+    public String countAndSay(int A) {
+       	ArrayList<String> myList = new ArrayList<String>();
+       String s = "1";
+       myList.add(s);
+       for(int i=1;i<A;i++){
+           myList.add(nextString(myList.get(i-1)));
+       }
+    return myList.get(myList.size()-1);
+    }
+}
