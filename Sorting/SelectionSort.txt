@@ -1,4 +1,4 @@
---> Just like bubbleSort here also we grow sorted array from left to right
+
 
 --> In-place Algorithm {Extra memory doesn't depend on size of array}...
 
