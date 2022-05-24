@@ -1,0 +1,67 @@
+Link --> https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/
+
+Question --> There are n seats and n students in a room. You are given an array seats of length n, where seats[i] is the position of the ith seat. You are also given the array students of length n, where students[j] is the position of the jth student.
+
+You may perform the following move any number of times:
+
+Increase or decrease the position of the ith student by 1 (i.e., moving the ith student from position x to x + 1 or x - 1)
+Return the minimum number of moves required to move each student to a seat such that no two students are in the same seat.
+
+Note that there may be multiple seats or students in the same position at the beginning.
+
+
+Approach1 --> Create an array of size {max-min+1} and Store all the frequencies of elements of students and seats array.. Subtract their corresponding elements and take their absolute value ...
+Approach2 --> sort students and seats array. Subtract their corresponding position and take its absolute value and sum all the values 
+
+Solution!
+
+class Solution {
+    public int minMovesToSeat(int[] seats, int[] students) {
+        
+        int[] seats_arr = new int[101];
+        int[] students_arr = new int[101];
+        
+        for(int s: seats) {
+			// when seat postions are same
+            seats_arr[s] = seats_arr[s] == 0 ? 1 : seats_arr[s]+1;
+        }
+        
+        for(int s: students) {
+			// when student postions are same
+            students_arr[s] = students_arr[s] == 0 ? 1 : students_arr[s]+1;
+        }
+        
+        int i=0, j=0, sum=0;
+        while(i < seats_arr.length && j < students_arr.length) {
+            if(seats_arr[i] != 0 && students_arr[j] != 0) {
+                
+                sum += Math.abs(i-j);
+                
+				//Do not increment if there are more than 1 seat at the same position
+                if (seats_arr[i] > 1)
+                    seats_arr[i] -= 1;
+                else
+                    i++;
+                
+				//Do not increment if there are more than 1 student at the same position
+                if (students_arr[j] > 1)
+                    students_arr[j] -= 1;
+                else
+                    j++;
+                
+            } else if(seats_arr[i] == 0) {
+				//No seat at this position
+                i++;
+            }else if(students_arr[j] == 0){
+				//No student at this position
+                j++;
+            } else {
+				//No seat and student at these positions
+                i++;
+                j++;
+            }
+        }
+        
+        return sum;
+    }
+}
