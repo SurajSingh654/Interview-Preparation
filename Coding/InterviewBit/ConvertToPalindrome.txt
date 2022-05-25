@@ -1,0 +1,80 @@
+Link --> https://www.interviewbit.com/problems/convert-to-palindrome/
+
+Question --> Given a string A consisting only of lowercase characters, we need to check whether it is possible to make this string a palindrome after removing exactly one character from this.
+
+If it is possible then return 1 else return 0.
+
+
+
+Problem Constraints
+3 <= |A| <= 105
+
+ A[i] is always a lowercase character.
+
+ Approach --> Check first and Last character upto when first!=last ... firstIndex++ , if now first === last then loop again upto first===last else lastIndex-- and check first === last and run loop .... 
+ if(firstIndex>lastIndex) palindrome else not palindrome ...
+
+ Solution1:
+
+ public class Solution {
+    public StringBuilder replaceChar(String A){
+        int i=0;
+        int j=A.length()-1;
+         StringBuilder sb = new StringBuilder(A);
+        while(sb.charAt(i)==sb.charAt(j) && i<=j){
+             i++;
+             j--;
+        }
+        if(i>j){
+            return new StringBuilder("");
+        }else{
+            return new StringBuilder(sb.substring(i,j+1));
+        }
+    }
+    public int solve(String A) { 
+        StringBuilder s = replaceChar(A);
+        if(s.length()==0 || s.length()==2){
+            return 1;
+        }else{
+           int length1  = replaceChar(s.substring(1).toString()).length();
+           int length2 = replaceChar(s.substring(0,s.length()-1).toString()).length();
+           if(length1 == 0 || length2 == 0){
+               return 1;
+           }
+        }
+        return 0;
+    }
+
+}
+
+Solution2{more structured}:
+
+public class Solution {
+    public int solve(String A) {
+        int l = 0;
+        int r = A.length()-1;
+        boolean removed = false;
+        while (l < r){
+            if (A.charAt(l) == A.charAt(r)){
+                l++;
+                r--;
+            }
+            else{
+                if (removed){
+                    return 0;
+                }
+                removed = true;
+                if (A.charAt(l+1) == A.charAt(r)){
+                    l++;
+                }
+                else{
+                    r--;
+                }
+            }
+        }
+        return 1;
+    }
+}
+
+
+
