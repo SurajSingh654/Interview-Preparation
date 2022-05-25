@@ -1,0 +1,81 @@
+Link --> https://www.interviewbit.com/problems/find-permutation/
+
+Question --> Given a positive integer n and a string s consisting only of letters D or I, you have to find any permutation of first n positive integer that satisfy the given input string.
+
+D means the next number is smaller, while I means the next number is greater.
+
+Notes
+
+Length of given string s will always equal to n - 1
+Your solution should run in linear time and space.
+
+Approach1 --> Create an array of natural numbers ...Get all Index Of D's from String and sort them in descending order ...
+
+Approach2{Efficient} --> Create an array of natural numbers.. For any D add largest number in arrayList and for I store smallest number from arrayList ...
+
+Solution1:
+
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public ArrayList<Integer> findPerm(final String A, int B) {
+        int[] arr = new int[B];
+        Arrays.setAll(arr, i -> i + 1);
+        int i=0;
+         while(i<A.length()){
+             int count = 0;
+            if(A.charAt(i)=='D'){
+               while( i<A.length() && A.charAt(i)=='D'){
+                   count++;
+                   i++;
+               }
+               for(int startIndex=i-count,endIndex=i;startIndex<endIndex;startIndex++,endIndex--){
+                      arr[startIndex] = arr[startIndex]^arr[endIndex];
+                      arr[endIndex] = arr[startIndex]^arr[endIndex];
+                      arr[startIndex] = arr[startIndex]^arr[endIndex];
+               }
+            }else{
+                while(i<A.length() && A.charAt(i)=='I'){
+                   i++;
+               }
+            }
+        }
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for(int value:arr){
+           list.add(value);
+        }
+        return list;
+    }
+}
+
+
+Solutio2:
+
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public ArrayList<Integer> findPerm(final String A, int B) {
+        
+        int smallest =1;
+        int largest = B;
+        ArrayList<Integer> op = new ArrayList<Integer>();
+        for(int i=0;i<A.length();i++)
+        {
+            if(A.charAt(i)=='D')
+            {
+                op.add(largest);
+                largest = largest -1;
+            }
+            else
+            {
+                op.add(smallest);
+                smallest = smallest+1;
+            }
+        }
+        
+        op.add(smallest);
+        return op;
+    }
+}
+
+
+
+
