@@ -5,7 +5,7 @@ Question-Link: https://practice.geeksforgeeks.org/problems/sieve-of-eratosthenes
 Algorithm
 
 Step1 -> Create an boolean array of size 'n' with initial true value ...
-Step2 -> loop upto Root{n} and mark all their multiple from 1 to Root{n} false... Remianing all are prime numbers
+Step2 -> loop upto Root{n} and mark all their multiple from 1 to Root{n} false... Remaining all are prime numbers
 
 
 class Solution{

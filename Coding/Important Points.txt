@@ -56,6 +56,8 @@ It is possible for the function to execute in constant memory space because, in 
 
 As no computation is performed on the returned value and no statements are left for execution, the current frame can be modified as per the requirements of the current function call. So there is no need to preserve stack frames of previous function calls and function executes in constant memory space. This makes tail recursion faster and memory-friendly.
 
+-->  The floor of the square root of x cannot be more than x/2 when x > 1.
+
 TODO:  Taylor Series using Recursion
 TODO:  Taylor Series using Horner's Rule
 TODO:  Fibonnacci Series using Recursion & Memoization 
