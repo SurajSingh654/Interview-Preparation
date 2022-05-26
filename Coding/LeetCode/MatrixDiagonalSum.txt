@@ -1,0 +1,26 @@
+Link --> https://leetcode.com/problems/matrix-diagonal-sum/
+
+Question --> Given a square matrix mat, return the sum of the matrix diagonals.
+
+Only include the sum of all the elements on the primary diagonal and all the elements on the secondary diagonal that are not part of the primary diagonal.
+
+
+Approach --> Slelect Corner ELements for big matrix then small matrix and so on ...
+
+class Solution {
+    public int diagonalSum(int[][] mat) {
+        int len = mat.length;
+        int count = 0;
+        int a = 0;
+        int b = len-1;
+        for(int i=1;i<=(len>>1);i++){
+            count+=(mat[a][b]+mat[b][a]+mat[a][a]+mat[b][b]);
+            a++;
+            b--;
+        }
+        if((len & 1)!=0){
+            count+=mat[len>>1][len>>1];
+        }
+        return count;
+    }
+}
