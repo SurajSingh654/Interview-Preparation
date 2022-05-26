@@ -1,0 +1,36 @@
+Link --> https://www.interviewbit.com/problems/minimum-parantheses/
+
+Question --> Given a string A of parantheses  ‘(‘ or ‘)’.
+
+The task is to find minimum number of parentheses ‘(‘ or ‘)’ (at any positions) we must add to make the resulting parentheses string valid.
+
+An string is valid if:
+
+Open brackets must be closed by the corresponding closing bracket.
+Open brackets must be closed in the correct order.
+
+
+Approach --> Use stack to push '(' if you encounter ')' then pop from stack{if stack is not empty else count++} return stack size + count ... 
+
+public class Solution {
+    public int solve(String A) {
+        Stack<Character> stk = new Stack<Character>();
+        int count = 0;
+        for(int i=0;i<A.length();i++){
+            if(A.charAt(i)=='('){
+                stk.push('(');
+            }else{
+                if(A.charAt(i)==')' && stk.isEmpty()){
+                count++;
+                }
+            if(A.charAt(i)==')' && !stk.isEmpty()){
+                stk.pop();
+               }
+
+            }
+         
+        }
+       return count+stk.size();
+    }
+   
+}
