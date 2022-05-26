@@ -1,0 +1,53 @@
+Link --> https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/
+
+Question --> You are given an m x n binary matrix mat of 1's (representing soldiers) and 0's (representing civilians). The soldiers are positioned in front of the civilians. That is, all the 1's will appear to the left of all the 0's in each row.
+
+A row i is weaker than a row j if one of the following is true:
+
+The number of soldiers in row i is less than the number of soldiers in row j.
+Both rows have the same number of soldiers and i < j.
+Return the indices of the k weakest rows in the matrix ordered from weakest to strongest.
+
+Approach --> Sort the matrix on the basis on number of one's and their index {for this we can create Pair class in which we store number of one's and index }
+
+
+class Pair implements Comparable<Pair>{
+    int rowIndex;
+    int soldier;
+    Pair(int rowIndex,int soldier){
+        this.rowIndex = rowIndex;
+        this.soldier = soldier;
+    }
+    
+    public int compareTo(Pair p){  
+      if(this.soldier > p.soldier)  
+        return 1;  
+      else if(this.soldier == p.soldier && this.rowIndex > p.rowIndex )  
+       return 1;  
+      else 
+       return -1;  
+    } 
+}
+
+class Solution {
+    public int[] kWeakestRows(int[][] mat, int k) {
+        ArrayList<Pair> list =new ArrayList<Pair>();  
+        for(int i=0;i<mat.length;i++){
+            int count =0;
+            for(int j=0;j<mat[i].length;j++){
+                if(mat[i][j]==0){
+                    break;
+                }else{
+                    count++;
+                }
+            }
+            list.add(new Pair(i,count));
+       }
+        Collections.sort(list);
+        int[] arr = new int[k];
+        for(int i=0;i<k;i++){
+            arr[i] = list.get(i).rowIndex;
+        }
+        return arr;
+    }
+}
