@@ -1,0 +1,40 @@
+Link --> https://www.interviewbit.com/problems/vowel-and-consonant-substrings/
+
+Question --> Given a string A consisting of lowercase characters.
+
+You have to find the number of substrings in A which starts with vowel and end with consonants or vice-versa.
+
+Return the count of substring modulo 109 + 7.
+
+
+
+Problem Constraints
+1 <= |A| <= 105
+
+A consists only of lower-case characters
+
+Approach --> Create a suffix array and check for each individual character {how many vowel/consonants are ahead of him}
+
+
+public class Solution {
+    public int solve(String A) {
+        int[] arr = new int[A.length()];
+        int vowel = 0;
+        int consonants = 0;
+         int mod = 1000000007;
+        for(int i=A.length()-1;i>=0;i--){
+             if(A.charAt(i)=='a'||A.charAt(i)=='e'||A.charAt(i)=='i'||A.charAt(i)=='o'||A.charAt(i)=='u'){
+                      arr[i] = consonants;
+                      vowel++;
+             } else{
+                    arr[i] = vowel;
+                    consonants++;
+             } 
+        }
+        int res = 0;
+        for(int i=0;i<arr.length;i++){
+           res = (res%mod+arr[i]%mod)%mod;
+        }
+        return res;
+    }
+}
