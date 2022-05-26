@@ -1,0 +1,31 @@
+Link --> https://www.interviewbit.com/problems/remove-consecutive-characters/
+
+Question --> Given a string A and integer B, remove all consecutive same characters that have length exactly B.
+
+
+
+Problem Constraints
+1 <= |A| <= 100000
+
+1 <= B <= |A|
+
+Approach --> Count number of consecutive same variables , if they are equal to given value then do not append in new string else append it in new string ...
+
+
+public class Solution {
+    public String solve(String A, int B) {
+        String ans = "";
+        for(int i = 0 ; i < A.length() ; i++){
+            int j = i + 1;
+            while(j < A.length() && A.charAt(j) == A.charAt(i))
+                j++;
+            
+            if(j - i != B)
+                ans += A.substring(i , j);
+                
+            i = j - 1;
+        }
+        return ans;
+        
+    }
+}
