@@ -58,6 +58,38 @@ As no computation is performed on the returned value and no statements are left 
 
 -->  The floor of the square root of x cannot be more than x/2 when x > 1.
 
+LowerTriangular Matrix: 
+  --> non-zero elements = (n*(n+1))/2;
+  --> zero elements = n^2 - (n*(n+1))/2;
+  --> we store non-zero elements in an array 
+  --> Row-Major Mapping = arrayIndex for corresponding eleemnt Matrix[i,j] = array[(i*(i-1))/2+(j-1)]
+   --> Column-Major Mapping = arrayIndex for corresponding eleemnt Matrix[i,j] = array[(N(j-1)-((j-1)*(j-2))/2)+(i-j)]
+
+
+UpperTriangular Matrix: 
+  --> non-zero elements = (n*(n+1))/2;
+  --> zero elements = n^2 - (n*(n+1))/2;
+  --> we store non-zero elements in an array 
+  --> Row-Major Mapping = array[(N(i-1)-((i-1)*(i-2))/2)+(j-i)]
+   --> Column-Major Mapping = arrayIndex for corresponding elemnt Matrix[i,j] = array[(j*(j-1))/2+(i-1)]
+
+
+--> Symmetric-Matrix can also store in LowerTriangular or UpperTriangular matrix ...
+
+
+TriDiagonal Matrix:
+  --> non-zero elements = 3*N-2;
+  --> Matrix[i,j]: 
+        --> Case1 = if(i-j==1) ==> array[i-1]
+        --> Case2 = if(i-j==0) ==> array[n-1+i-1]
+        --> Case3 = if(j-i==1) ==> array[2*n-1+i-1]
+
+Toeplitz Matrix:
+   --> Matrix[i,j]:
+         --> Case1 = if(i<=j) ==> array[j-i]
+         --> Case2 = if(i>j)  ==> N + i-j-1
+
+
 TODO:  Taylor Series using Recursion
 TODO:  Taylor Series using Horner's Rule
 TODO:  Fibonnacci Series using Recursion & Memoization 
