@@ -1,0 +1,77 @@
+Link --> https://leetcode.com/problems/lucky-numbers-in-a-matrix/
+
+Question --> Given an m x n matrix of distinct numbers, return all lucky numbers in the matrix in any order.
+
+A lucky number is an element of the matrix such that it is the minimum element in its row and maximum in its column.
+
+Approach --> Create HashMap{to store row/column as key and element as value} and ArrayList to store luckyNumbers ... Check row is greater or column is greater or equal ... Select which is smaller ... Get max value in each column if row smaller or Get min value in each row if column smaller and store corresponding columnIndex/rowIndex with element in HashMap ... Now iterate hashmap index as row/column index and get min/max in row/column if hashmap values matches with min/max in each row/column then add in ArrayList and return ...
+
+
+
+TODO: Optimization
+
+Solution!
+
+class Solution {
+    public List<Integer> luckyNumbers (int[][] matrix) {
+        int row = matrix.length;
+        int column = matrix[0].length;
+       Map<Integer,Integer> hm = new HashMap<Integer,Integer>();
+        List<Integer> list = new ArrayList<Integer>();
+        if(row<=column){
+            for(int i=0;i<row;i++){
+                int min = 100000;
+                int index = 0 ;
+                for(int j=0;j<column;j++){
+                    if(min>matrix[i][j]){
+                        min = matrix[i][j];
+                        index = j;
+                    } 
+                }
+                  if(hm.containsKey(index)){
+                        hm.replace(index,Math.max(min,hm.get(index)));
+                    }else{
+                        hm.put(index,min);
+                    }
+            }
+            for(Integer i:hm.keySet()){
+                int max = 1;
+                for(int j=0;j<row;j++){
+                    if(max<matrix[j][i]){
+                        max = matrix[j][i];
+                    }
+                }
+                if(max == hm.get(i)){
+                   list.add(max); 
+                }
+            }
+        }else{
+            for(int i=0;i<column;i++){
+                int max = 1;
+                int index = 0 ;
+                for(int j=0;j<row;j++){
+                    if(max<matrix[j][i]){
+                        max = matrix[j][i];
+                        index = j;
+                    } 
+                }
+                  if(hm.containsKey(index)){
+                        hm.replace(index,Math.min(max,hm.get(index)));
+                    }else{
+                        hm.put(index,max);
+                    }
+            }
+            for(Integer i:hm.keySet()){
+                int min = 100000;
+                for(int j=0;j<column;j++){
+                    if(min>matrix[i][j]){
+                        min = matrix[i][j];
+                    }
+                }
+                if(min == hm.get(i)){
+                   list.add(min); 
+                }
+            }
+        }
+         return list;
+    }
