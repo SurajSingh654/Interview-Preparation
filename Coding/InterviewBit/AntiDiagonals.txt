@@ -1,0 +1,43 @@
+Link --> https://www.interviewbit.com/problems/anti-diagonals/
+
+Question --> Give a N*N square matrix, return an array of its anti-diagonals. Look at the example for more details.
+
+Approach --> Add 2d arraylist element at index (i+j) in new 2d arraylist
+
+Solution1!
+
+public class Solution {
+    public ArrayList<ArrayList<Integer>> diagonal(ArrayList<ArrayList<Integer>> A) {
+        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+        for(int i=1;i<=A.size();i++){
+            list.add(new ArrayList<>(i+1));
+        }
+        for(int i=A.size()+1;i<(A.size()<<1);i++){
+            list.add(new ArrayList<>((A.size()<<1)-i));
+        }
+        for(int i=0;i<A.size();i++){
+            for(int j=0;j<A.size();j++){
+                list.get(i+j).add(A.get(i).get(j));
+            }
+        }
+        return list;
+    }
+    }
+
+    Solution2!
+
+    public class Solution {
+	public ArrayList> diagonal(ArrayList> A) {
+	    int l = A.size();
+	    ArrayList> res = new ArrayList>();
+        for (int i = 0; i < 2 * l - 1; ++i) {
+    	    int offset = i < l ? 0 : i - l + 1;
+	        ArrayList row = new ArrayList();
+    	    for (int j = offset; j <= i - offset; ++j) {
+		        row.add(A.get(j).get(i - j));
+    	    }
+	        res.add(row);
+        }
+        return res;
+	}
+}
