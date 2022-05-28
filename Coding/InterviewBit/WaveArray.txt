@@ -1,0 +1,31 @@
+Link --> https://www.interviewbit.com/problems/wave-array/
+
+Question --> Given an array of integers,  sort the array into a wave like array and return it, 
+
+In other words, arrange the elements into a sequence such that  a1 >= a2 <= a3 >= a4 <= a5.....
+
+
+Approach --> Swap pair of elements , then swap next pair and so on ...
+
+Solution!
+
+public class Solution {
+    public ArrayList<Integer> wave(ArrayList<Integer> A) {
+        Collections.sort(A);
+        if((A.size()&1)==0){
+           for(int i=0;i<A.size();i+=2){
+               Integer temp = A.get(i);
+                A.set(i,A.get(i+1));
+                A.set(i+1,temp);
+          }
+        }else{
+            for(int i=0;i<A.size()-1;i+=2){
+               Integer temp = A.get(i);
+                A.set(i,A.get(i+1));
+                A.set(i+1,temp);
+            }
+        }
+        return A;
+        
+    }
+}
