@@ -1,0 +1,61 @@
+Link --> https://practice.geeksforgeeks.org/problems/remove-loop-in-linked-list/1
+
+Question --> Given a linked list of N nodes such that it may contain a loop.
+
+A loop here means that the last node of the link list is connected to the node at position X. If the link list does not have any loop, X=0.
+
+Remove the loop from the linked list, if it is present.  
+
+Approach --> Detect meeting node{slow==fast} ... Start iterating from head node and meet node and get onePrevious node when head & slow meet again and put null to slow ...
+
+
+
+Solution!
+
+class Solution
+{
+    public static Node Cycle(Node head){
+        Node slow = head, fast = head;
+        slow = slow.next;
+        fast = fast.next.next;
+        while(fast != null && fast.next != null ){
+            if(slow == fast){
+                return slow;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return null;
+    }
+    public static void removeLoop(Node head){
+        
+        // It means no node is present or one node present without loop{as, head.next == null}
+        if (head == null || head.next == null){
+            return;
+        }
+        
+        Node meetNode = Cycle(head);
+        if(meetNode!=null){
+            
+          // take one Node from start
+          Node start = head;
+          if(start!=meetNode){
+              while (start.next != meetNode.next) {
+                    start = start.next;
+                    meetNode = meetNode.next;
+                }
+                 // Get One previous node of intersection node to make it null
+                meetNode.next = null; 
+          }else{
+              
+              // Get One previous node of intersection node to make it null
+              while(meetNode.next != start) {
+                    meetNode = meetNode.next;
+                }
+                meetNode.next = null;
+          }
+        }
+            
+ 
+    }
+}
