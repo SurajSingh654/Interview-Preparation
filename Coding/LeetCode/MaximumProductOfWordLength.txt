@@ -1,0 +1,58 @@
+Approach1 --> if two strings have nothing common then multiply their lengths and get max product from all lengths ...
+
+Approach2 --> Use binaryString of 26 bit for each string and set bit for occured character ... Perform & operation on two binaryStrings if they are not same then their & operation == 0
+
+Solution1!
+
+class Solution {
+    public boolean common(String s1,String s2){
+        boolean[] isCharacterPresent = new boolean[26];
+        for(int i=0;i<s1.length();i++){
+            if(isCharacterPresent[s1.charAt(i)-'a']==false){
+                isCharacterPresent[s1.charAt(i)-'a'] = true;
+            }  
+        }
+        for(int i=0;i<s2.length();i++){
+            if(isCharacterPresent[s2.charAt(i)-'a']){
+                return true;
+            }
+        }
+        return false;
+    }
+    public int maxProduct(String[] words) {
+        int max = 0;
+        for(int i=0;i<words.length-1;i++){
+            for(int j=i+1;j<words.length;j++){
+                if(max>=words[i].length()*words[j].length()){
+                    continue;
+                }
+                 if(!common(words[i],words[j])){
+                     max = Math.max(max,words[i].length()*words[j].length());
+                 }
+           }
+        }
+        return max;
+    }
+}
+
+
+Solution2!
+
+class Solution {
+    public int maxProduct(String[] words) {
+        int n = words.length;
+        int[] masks = new int[n];
+        
+        for (int i=0; i<n; i++)
+            for (char c: words[i].toCharArray())
+                masks[i] |= (1 << (c - 'a'));
+        
+        int largest = 0;
+        for (int i=0; i<n; i++) 
+            for (int j=0; j<n; j++) 
+                if (i != j && (masks[i] & masks[j]) == 0) 
+					largest = Math.max(largest, words[i].length() * words[j].length());
+        
+        return largest;
+    }
+}
