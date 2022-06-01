@@ -1,0 +1,50 @@
+Link --> https://practice.geeksforgeeks.org/problems/remove-duplicates-from-an-unsorted-linked-list/1
+
+Question --> Given an unsorted linked list of N nodes. The task is to remove duplicate elements from this unsorted Linked List. When a value appears in multiple nodes, the node which appeared first should be kept, all others duplicates are to be removed.
+
+
+Approach --> Use HashMap to store distinct elements when amy element encounter first time replace its value from false to true in HashMap ... and  if value of key  is true move current to current.next and previous points to new current ...
+
+Solution!
+
+class Solution
+{
+    //Function to remove duplicates from unsorted linked list.
+    
+    
+    public Node removeDuplicates(Node head) 
+    {
+        if(head==null||head.next==null){
+            return head;
+        }
+         // Your code here
+         HashMap<Integer,Boolean> hm = new HashMap<Integer,Boolean>(); 
+         Node node = head;
+         while(node!=null){
+             if(!hm.containsKey(node.data)){
+                hm.put(node.data,false);
+             }
+             node = node.next;
+         }
+         hm.replace(head.data,true);
+         Node previousNode = head;
+         Node currentNode = head.next;
+         while(currentNode.next!=null){
+             if(hm.get(currentNode.data)==true){
+                 currentNode = currentNode.next;
+                 previousNode.next = currentNode;
+             }else{
+                 hm.replace(currentNode.data,true);
+                 previousNode = previousNode.next;
+                 currentNode = currentNode.next;
+             }
+                 
+             
+         }
+         if(hm.get(currentNode.data)==true){
+             previousNode.next = null;
+         }
+         return head;
+         
+    }
+}
