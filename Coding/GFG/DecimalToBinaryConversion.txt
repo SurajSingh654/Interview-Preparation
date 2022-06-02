@@ -1,0 +1,148 @@
+Approach 1 --> Divide number by 2 and store their remainder in 32 size array 
+
+// Java program to convert a decimal
+// number to binary number
+import java.io.*;
+
+class GFG {
+	// function to convert decimal to binary
+	static void decToBinary(int n)
+	{
+		// array to store binary number
+		int[] binaryNum = new int[32];
+
+		// counter for binary array
+		int i = 0;
+		while (n > 0) {
+			// storing remainder in binary array
+			binaryNum[i] = n % 2;
+			n = n / 2;
+			i++;
+		}
+
+		// printing binary array in reverse order
+		for (int j = i - 1; j >= 0; j--)
+			System.out.print(binaryNum[j]);
+	}
+
+	public static void main(String[] args)
+	{
+		int n = 17;
+		decToBinary(n);
+	}
+}
+
+
+Approach 2 --> We can use bitwise operators to do the above job. Note that bitwise operators work faster than arithmetic operators used above.
+
+// Java program to Decimal to binary conversion
+// using bitwise operator
+// Size of an integer is assumed to be 32 bits
+
+class gfg {
+	// Function that convert Decimal to binary
+	public void decToBinary(int n)
+	{
+		// Size of an integer is assumed to be 32 bits
+		for (int i = 31; i >= 0; i--) {
+			int k = n >> i;
+			if ((k & 1) > 0)
+				System.out.print("1");
+			else
+				System.out.print("0");
+		}
+	}
+}
+
+class geek {
+	public static void main(String[] args)
+	{
+		gfg g = new gfg();
+		int n = 32;
+		g.decToBinary(n);
+	}
+}
+
+
+Approach 3 --> t’s another efficient approach to converting Decimal to binary using the right shift(>>) and And(&) operator. Here we’ll use only Binary Operators which usually are very fast in computation.
+
+// Java program to implement the
+// above approach
+import java.io.*;
+
+class GFG
+{
+
+// the converts decimal to binary base
+static String DecimalToBinary(int num)
+{
+	String str = "";
+	while (num > 0) {
+	if ((num & 1) == 1) // 1
+		str += '1';
+	else // 0
+		str += '0';
+	num >>= 1; // Right Shift by 1
+	}
+	return str;
+}
+
+// reverse the string
+static void reverse(String str)
+{
+	for (int i = str.length() - 1; i >= 0; i--)
+	System.out.print(str.charAt(i));
+}
+public static void main(String[] args)
+{
+	int num = 59;
+	System.out.print("Binary of num 59 is: ");
+	reverse(DecimalToBinary(num));
+}
+}
+
+
+
+Approach 4 --> Decimal to binary conversion can also be done without using arrays. 
+
+// Java implementation of the approach
+import java.io.*;
+
+class GFG
+{
+
+// Function to return the binary
+// equivalent of decimal value N
+static int decimalToBinary(int N)
+{
+
+	// To store the binary number
+	int B_Number = 0;
+	int cnt = 0;
+	while (N != 0)
+	{
+		int rem = N % 2;
+		double c = Math.pow(10, cnt);
+		B_Number += rem * c;
+		N /= 2;
+
+		// Count used to store exponent value
+		cnt++;
+	}
+
+	return B_Number;
+}
+
+// Driver code
+public static void main (String[] args)
+{
+	
+	int N = 17;
+	System.out.println (decimalToBinary(N));
+
+}
+}
+ 
+
+
+
