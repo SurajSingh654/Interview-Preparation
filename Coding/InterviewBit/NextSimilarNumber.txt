@@ -1,0 +1,36 @@
+Link --> https://www.interviewbit.com/problems/next-similar-number/
+
+Question --> Given a number A in a form of string.
+
+You have to find the smallest number that has same set of digits as A and is greater than A.
+
+If A is the greatest possible number with its set of digits, then return -1.
+
+
+Approach --> Start from last of the string , get first smaller element replace it with just greater element from right-side then, sort remaning elements in right side ... 
+
+Solution!
+
+public class Solution {
+    
+    public String solve(String str) {
+        if(str.length()==1){
+            return "-1";
+        }
+        char[] charArray =  str.toCharArray();
+       for(int i=charArray.length-1;i>=1;i--){
+         if(charArray[i]>charArray[i-1]){
+             int j = charArray.length-1;
+             while(charArray[j]<=charArray[i-1]){
+                 j--;
+             }
+             char temp = charArray[i-1];
+             charArray[i-1] = charArray[j];
+             charArray[j] = temp;
+             Arrays.sort(charArray,i,charArray.length);
+             return new String(charArray);
+         }
+       } 
+       return "-1";
+    }
+}
