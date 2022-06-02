@@ -105,6 +105,61 @@ So, the total number of possibilities are less than 10^5.
 Now, we just need to iterate on these possibilities and see if we find X = A^B.
 
 
+
+Note: 
+Some interesting fact about Prime numbers 
+
+Two is the only even Prime number.
+Every prime number can be represented in form of 6n+1 or 6n-1 except the prime number 2 and 3, where n is a natural number.
+Two and Three are only two consecutive natural numbers that are prime.
+Goldbach Conjecture: Every even integer greater than 2 can be expressed as the sum of two primes.
+Wilson Theorem: Wilson’s theorem states that a natural number p > 1 is a prime number if and only if
+(p - 1) ! ≡  -1   mod p 
+OR  (p - 1) ! ≡  (p-1) mod p
+Fermat’s Little Theorem: If n is a prime number, then for every a, 1 <= a < n,
+an-1 ≡ 1 (mod n)
+OR 
+an-1 % n = 1
+Prime Number Theorem: The probability that a given, randomly chosen number n is prime is inversely proportional to its number of digits, or to the logarithm of n.
+Lemoine’s Conjecture: Any odd integer greater than 5 can be expressed as a sum of an odd prime (all primes other than 2 are odd) and an even semiprime. A semiprime number is a product of two prime numbers. This is called Lemoine’s conjecture.
+
+
+To find prime factors of a number such that N = prime1*prime2
+
+Use:  ----> N = X^2 - Y^2  and X = Math.sqrt(N + Y^2)
+
+
+Fermat’s Primality Test --> is N is prime = if all a^N-a is a multiple of N for 1<=a<N
+Drawbacks --> **> Not 100% accurate 
+              **> Time consuming for large numbers
+
+
+**> Divisors:
+If we look carefully, all the divisors are present in pairs. For example if n = 100, then the various pairs of divisors are: (1,100), (2,50), (4,25), (5,20), (10,10)
+Using this fact we could speed up our program significantly. 
+We, however, have to be careful if there are two equal divisors as in the case of (10, 10). 
+
+
+
+Note ==> **>  The divisors of a number other than 1 and the number itself are called the factors of that number. 
+
+**>  Prime number has no factors and it will have only two divisors. They are 1 and the number itself. 
+
+1)  "1" has only one divisor, that is 1. So 1 is neither prime nor composite.  
+
+2)  1 and number itself are divisors of any number. 
+
+3)  Is there any number which has no divisor ? No, because 1 is a divisor of all numbers.
+
+4) Some numbers have more than two divisors. Those numbers are called as composite numbers. 
+
+5) Some numbers have exactly two divisors. Those numbers are called as prime numbers. 
+
+6)  Prime numbers has no factors. 
+
+7) All factors are divisors, but all divisors are not factors. 
+
+
 TODO:  Taylor Series using Recursion
 TODO:  Taylor Series using Horner's Rule
 TODO:  Fibonnacci Series using Recursion & Memoization 
