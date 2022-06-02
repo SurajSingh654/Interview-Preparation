@@ -1,0 +1,53 @@
+Link --> https://www.interviewbit.com/problems/excel-column-title/hints/
+
+Question --> Given a positive integer A, return its corresponding column title as appear in an Excel sheet.
+
+Solution1!
+
+public class Solution {
+	public String convertToTitle(int A) {
+	    char [] array = new char[26];
+	    
+	    for (int i = 0; i < 26; i++)
+	        array[i] = (char) ('A' + i);
+	        
+	   int num = 26;
+	   int index;
+	   String res = "";
+	   
+	   while (A > 0) {
+	       index = (A - 1 + num) % num;
+	   //    index = (index - 1 + num) % num;
+	       A = (A - 1) / num;
+	       res = array[index] + res;
+	   }
+	   
+	   return res;
+	    
+	}
+}
+
+
+
+Solution2!
+
+public class Solution {
+    static String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public String convertToTitle(int num) {
+         if(num < 26)
+      return Character.toString(alpha.charAt(num-1));
+    else{
+      int q = Math.floorDiv(num, 26);
+      int r = num % 26;
+      if(r == 0){
+        if(q == 1){
+          return Character.toString(alpha.charAt((26 + r-1)%26));
+        }
+        else
+          return convertToTitle(q-1) + alpha.charAt((26 + r-1)%26);
+      }
+      else
+        return convertToTitle(q) + alpha.charAt((26 + r-1)%26);
+    }
+    }
+}
