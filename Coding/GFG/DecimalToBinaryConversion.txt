@@ -1,4 +1,4 @@
-Approach 1 --> Divide number by 2 and store their remainder in 32 size array 
+Approach 1{Also use for decimal to octal} --> Divide number by 2 and store their remainder in 32 size array 
 
 // Java program to convert a decimal
 // number to binary number
@@ -103,7 +103,7 @@ public static void main(String[] args)
 
 
 
-Approach 4 --> Decimal to binary conversion can also be done without using arrays. 
+Approach 4{Also use for decimal to octal} --> Decimal to binary conversion can also be done without using arrays. 
 
 // Java implementation of the approach
 import java.io.*;
@@ -124,7 +124,7 @@ static int decimalToBinary(int N)
 		int rem = N % 2;
 		double c = Math.pow(10, cnt);
 		B_Number += rem * c;
-		N /= 2;
+		N / = 2;
 
 		// Count used to store exponent value
 		cnt++;
