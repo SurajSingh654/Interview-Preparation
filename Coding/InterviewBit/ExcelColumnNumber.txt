@@ -1,0 +1,18 @@
+Link --> https://www.interviewbit.com/problems/excel-column-number/
+
+Question --> Given a column title A as appears in an Excel sheet, return its corresponding column number.
+
+
+Solution!
+
+public class Solution {
+    public int titleToNumber(String A) {
+        int column=0;
+        int len = A.length();
+        for(int i=1;i<=len;i++){
+              column+=(Math.pow(26,len-i)*(A.charAt(i-1)-'A'+1));
+        }
+        return column;
+
+    }
+}
