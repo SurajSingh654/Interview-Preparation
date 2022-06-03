@@ -1,0 +1,58 @@
+Link --> https://www.interviewbit.com/problems/highest-score/
+
+Question --> You are given a 2D string array A of dimensions N x 2,
+
+where each row consists of two strings: first is the name of the student, second is their marks.
+
+You have to find the maximum average mark. If it is a floating point, round it down to the nearest integer less than or equal to the number.
+
+
+
+Approach --> Create HashMap and store name as Key and Pair{TotalMarks,Frequency} as Value ...
+
+Solution!
+
+public class Solution {
+    class Pair{
+        int f;
+        int s;
+        Pair(int f, int s){
+            this.f = f;
+            this.s = s;
+        }
+        int f(){
+            return this.f;
+        }
+        int s(){
+            return this.s;
+        }
+    }
+    public int highestScore(ArrayList<ArrayList<String>> A) {
+          int n = A.size();
+          if(n==0) return 0;
+          Map<String, Pair> m = new HashMap<>();
+          for(ArrayList<String> a:A){
+              int marks = Integer.valueOf(a.get(1));
+              String name = a.get(0);
+              if(m.containsKey(name)){
+                  Pair p = m.get(name);
+                  int freq = p.s;
+                  int curr_marks = p.f;
+                  p = new Pair(curr_marks+marks,freq+1);
+                  m.put(name,p);
+              }
+              else {
+                  Pair p = new Pair(marks,1);
+                  m.put(name,p);
+              }
+          }
+
+          int max = Integer.MIN_VALUE;
+
+          for(Map.Entry<String, Pair> e: m.entrySet()){
+              max = Math.max(max,e.getValue().f/e.getValue().s);
+          }
+          return max;
+    }
+}
+
