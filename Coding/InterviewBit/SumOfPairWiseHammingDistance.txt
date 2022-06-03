@@ -1,5 +1,6 @@
 Link --> https://www.interviewbit.com/problems/sum-of-pairwise-hamming-distance/
 
+Solution Link --> https://www.youtube.com/watch?v=EaE0fW3Xlx8
 
 Question --> Hamming distance between two non-negative integers is defined as the number of positions at which the corresponding bits are different.
 

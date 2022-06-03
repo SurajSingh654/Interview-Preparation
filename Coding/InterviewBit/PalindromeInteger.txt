@@ -1,0 +1,35 @@
+Link --> https://www.interviewbit.com/problems/palindrome-integer/
+
+Question --> Determine whether an integer is a palindrome. Do this without extra space.
+
+A palindrome integer is an integer x for which reverse(x) = x where reverse(x) is x with its digit reversed. Negative numbers are not palindromic.
+
+Approach --> get first and last element of integer and check their equality and so on ...
+
+Solution!
+
+public class Solution {
+    public int isPalindrome(int A) {
+        if (A < 0) {
+            return 0;
+        }
+        int divisor = 1;
+        while (A/divisor >= 10) {
+            divisor*=10;
+        }
+        while (divisor >= 1) {
+            int first = (A/divisor)%10;
+            int last = A%10;
+            //System.out.println("first = " + first);
+            //System.out.println("last = " + last);
+            //System.out.println("divisor = " + divisor);
+            if (first != last) {
+                return 0;
+            }
+            A /= 10;
+            divisor /= 100;
+        }
+        return 1;
+    }
+}
+
