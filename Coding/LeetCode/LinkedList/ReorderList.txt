@@ -1,0 +1,114 @@
+Link --> https://leetcode.com/problems/reorder-list/
+
+Question --> You are given the head of a singly linked-list. The list can be represented as:
+
+L0 → L1 → … → Ln - 1 → Ln
+Reorder the list to be on the following form:
+
+L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
+You may not modify the values in the list's nodes. Only nodes themselves may be changed.
+
+Approach --> Get StartNode , EndNode{StartNode.next} , PrevNode and LastNode put LastNode between StartNode and EndNode and make PrevNode.next = null . Then make new StartNode and EndNode.. 
+
+Solution!
+
+
+class Solution {
+    public void reorderList(ListNode head) {
+        if((head!=null) && (head.next!=null) && (head.next.next!=null) ){
+        ListNode startNode = head;
+        ListNode endNode = head.next;
+        while(startNode.next!=null && startNode.next.next!=null){
+        ListNode prevNode = startNode;
+        ListNode lastNode = endNode;
+        while(lastNode.next!=null){
+            prevNode = prevNode.next;
+            lastNode = lastNode.next;
+        }
+            lastNode.next = endNode;
+            prevNode.next = null;
+            startNode.next = lastNode;
+            startNode = endNode;
+            endNode = startNode.next;
+            
+        }
+        
+        }
+    
+        
+    }
+}
+
+
+
+
+Another Approach -->
+
+public class ReorderList {
+
+
+/*
+ *  1-2-3-4-5-6-7-8-9-10
+ *  Find the middle and break in two parts 1-2-3-4-5 and 6-7-8-9-10
+ *  Reverse the second part 10-9-8-7-6
+ *  now you have 1,2,3,4,5 and 10,9,8,7,6 Just combine them 1,10,2,9,3,8,4,7,5,6
+ * */
+
+public static void reorderListWithoutExtraSpace(ListNode head) {
+    if (head == null || head.next == null) return;
+
+    //Find the middle of the list
+    ListNode slow = head;
+    ListNode fast = head;
+    while (fast.next != null && fast.next.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    //Reverse the half after middle
+    ListNode preMiddle = slow;
+    ListNode preCurrent = slow.next;
+    while (preCurrent.next != null) {
+        ListNode current = preCurrent.next;
+        preCurrent.next = current.next;
+        current.next = preMiddle.next;
+        preMiddle.next = current;
+    }
+
+    //Start reorder one by one
+    slow = head;
+    fast = preMiddle.next;
+    while (slow != preMiddle) {
+        preMiddle.next = fast.next;
+        fast.next = slow.next;
+        slow.next = fast;
+        slow = fast.next;
+        fast = preMiddle.next;
+    }
+}
+
+
+public static void reorderListWithExtraSpace(ListNode head) {
+    Deque<ListNode> q = new LinkedList<>();
+    ListNode temp = head;
+    while (temp != null) {
+        q.addLast(temp);
+        temp = temp.next;
+    }
+    ListNode dummy = new ListNode(-1);
+    ListNode newHead = dummy;
+    while (!q.isEmpty()) {
+        ListNode f = q.removeFirst();
+        f.next = null;
+        dummy.next = f;
+        dummy = dummy.next;
+        if (!q.isEmpty()) {
+            ListNode l = q.removeLast();
+            l.next = null;
+            dummy.next = l;
+            dummy = dummy.next;
+        }
+    }
+    head = newHead.next;
+}
+}
