@@ -12,6 +12,10 @@ Problem Constraints
 
 Approach --> Use Half Adder approach{Sum & Carry}
 
+
+For Subtraction --> Use borrow = ~x^y and y = borrow << 1 ;
+
+
 Solution!
 
 public class Solution {

@@ -1,0 +1,53 @@
+Link --> https://www.interviewbit.com/problems/divisible-by-60/
+
+Question --> Given a large number represent in the form of an integer array A, where each element is a digit.
+
+You have to find whether there exists any permutation of the array A such that the number becomes divisible by 60.
+
+Return 1 if it exists, 0 otherwise.
+
+
+
+
+Approach --> Check whether any 0 is present and sum all the numbers , if it is divided by 3 and also greater than three
+
+Note --> For a number to be divisible by a composite number, it should be divisible 
+by the individual prime numbers raised to their highest powers.
+Here, 60 = 4 * 5 * 3.
+Now, we have to make sure that the number is divisible by 3, 4, 5.
+For, a number to be divisible by 5, the last digit should be either 0 or 5.
+For, a number to be divisible by 4, the last two digits should be divisible by 4.
+Hence, here for a number to be divisble by 4 & 5, the last digits should be 0, 
+and the second last digits should be even.
+
+Next, for a number to be divisible by 3, the sum of digits should be divisible by 3.
+Hence, if the given array sum is divisible by 3 and contains 0 and an another even digit, 
+then there exists a permutation which is divisible by 60.
+
+Solution!
+
+public class Solution {
+    int summation(int x,int y){
+        int carry = 0;
+        while(y!=0){
+            carry = x&y;
+            x = x^y;
+            y = carry<<1;
+        }
+        return x;
+    }
+    public int divisibleBy60(ArrayList<Integer> A) {
+        if(!A.contains(0)){
+            return 0;
+        }
+        int sum = 0;
+        for(Integer i:A){
+            sum = summation(sum,i);
+        }
+        if(((sum>3) && (sum%3==0))||(sum==0)){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+}
