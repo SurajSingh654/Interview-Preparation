@@ -1,0 +1,35 @@
+Link --> https://leetcode.com/problems/intersection-of-two-linked-lists/
+
+Question --> Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
+Solution!
+
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+         ListNode dummy1 = headA;
+        ListNode dummy2 = headB;
+        
+        // looping untill our two dummies meet at one node 
+        while(dummy1 != dummy2){
+            
+            
+            if(dummy1 != null){
+                // just move to next node
+                dummy1 = dummy1.next;
+            }else{
+                // assign dummy1 to headB so that both dummies meet
+                dummy1 = headB;
+            }
+            if(dummy2 != null){
+                // just move to next node
+                dummy2 = dummy2.next;
+            }else{
+                // assign dummy2 to headA so that both dummies meet
+                dummy2 = headA;
+            }
+        }
+        // you can return dummy1 or dummy2 because at this point they will be
+        // at the same node if there is intersection if not they will be 
+        // pointing to null
+        return dummy2;
+    }
+}
