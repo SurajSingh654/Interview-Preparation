@@ -1,0 +1,28 @@
+Link --> https://www.interviewbit.com/problems/addition-without-summation/
+
+Question --> ou are given two numbers A and B.
+
+You have to add them without using arithmetic operators and return their sum.
+
+
+
+Problem Constraints
+1 <= A, B <= 109
+
+
+Approach --> Use Half Adder approach{Sum & Carry}
+
+Solution!
+
+public class Solution {
+    public int addNumbers(int x, int y) {
+        int carry = 0;
+        while(y!=0){
+            carry = x&y;
+            x = x^y;
+            y = carry<<1;
+        }
+        return x;
+    }
+}
+
