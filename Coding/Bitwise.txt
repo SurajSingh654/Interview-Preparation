@@ -1,19 +1,23 @@
 Note --> To subtract 1 from a number x (say 0011001000), flip all the bits after the rightmost 1 bit (we get 0011001111). Finally, flip the rightmost 1 bit also (we get 0011000111) to get the answer.
 
-Note --> To add 1 to a number x (say 0011000111), flip all the bits after the rightmost 0 bit (we get 0011000000). Finally, flip the rightmost 0 bit also (we get 0011001000) to get the answer. 
+Note: --> To add 1 to a number x (say 0011000111), flip all the bits after the rightmost 0 bit (we get 0011000000). Finally, flip the rightmost 0 bit also (we get 0011001000) to get the answer. 
 
-Note --> We know that the negative number is represented in 2’s complement form on most of the architectures. We have the following lemma hold for 2’s complement representation of signed numbers.
+Note: --> We know that the negative number is represented in 2’s complement form on most of the architectures. We have the following lemma hold for 2’s complement representation of signed numbers.
 Say, x is numerical value of a number, then
 Important =====> ~x = -(x+1) [ ~ is for bitwise complement ]
 Adding 2x on both the sides, 
 Important =====>  2x + ~x = x – 1
 To obtain 2x, left shift x once. 
 
-Note --> We know that the negative number is represented in 2’s complement form on most of the architectures. We have the following lemma hold for 2’s complement representation of signed numbers.
+Note: --> We know that the negative number is represented in 2’s complement form on most of the architectures. We have the following lemma hold for 2’s complement representation of signed numbers.
 Say, x is numerical value of a number, then
 ~x = -(x+1) [ ~ is for bitwise complement ]
 (x + 1) is due to the addition of 1 in 2’s complement conversion
 To get (x + 1) apply negation once again. So, the final expression becomes (-(~x)). 
 
 
- Note --> We can get x*3.5 by adding 2*x, x and x/2. To calculate 2*x, left shift x by 1 and to calculate x/2, right shift x by 1. Another way of doing this could be (8*x – x)/2 ...
+ Note: --> We can get x*3.5 by adding 2*x, x and x/2. To calculate 2*x, left shift x by 1 and to calculate x/2, right shift x by 1. Another way of doing this could be (8*x – x)/2 ...
+
+ Important --> temp *= 10 is the same as writing temp = (temp << 3) + (temp << 1)
+
+ Number of Digits in an Integer in Java --> https://www.baeldung.com/java-number-of-digits-in-int

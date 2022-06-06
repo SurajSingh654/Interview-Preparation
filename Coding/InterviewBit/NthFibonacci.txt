@@ -1,5 +1,5 @@
 Link --> https://www.interviewbit.com/problems/find-nth-fibonacci/hints/
-
+Solution Video --> https://www.youtube.com/watch?v=iZFXQMTdW-c
 Question --> Given an integer A you need to find the Ath fibonacci number modulo 109 + 7.
 
 The first fibonacci number F1 = 1
@@ -51,3 +51,25 @@ public class Solution {
     }
 }
 
+
+
+Note --> For Small Numbers 
+
+public class Solution {
+    HashMap<Integer  ,Integer> hm = new HashMap<>();
+    int mod = 1000000007;
+    public int fib(int A,HashMap<Integer,Integer> hm){
+      if(A==1||A==2){
+            return 1;
+        }
+        if(hm.containsKey(A)){
+           return hm.get(A);
+        }
+        int val = (fib(A-1,hm)+fib(A-2,hm))%mod;
+        hm.put(A,val);
+        return val;
+    }
+    public int solve(int A) {
+        return fib(A,hm);
+    }
+}

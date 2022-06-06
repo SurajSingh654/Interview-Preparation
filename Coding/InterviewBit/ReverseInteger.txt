@@ -1,12 +1,12 @@
-Link --> https://www.interviewbit.com/problems/reverse-integer/
+Link: --> https://www.interviewbit.com/problems/reverse-integer/
 
-Question --> You are given an integer N and the task is to reverse the digits of the given integer. Return 0 if the result overflows and does not fit in a 32 bit signed integer
+Question: --> You are given an integer N and the task is to reverse the digits of the given integer. Return 0 if the result overflows and does not fit in a 32 bit signed integer
 
 
 Look at the example for clarification.
 
 
-Approach --> Here are some good questions to ask before coding.
+Approach: --> Here are some good questions to ask before coding.
 
 If the integer’s last digit is 0, what should the output be? ie, cases such as 10, 100.
 
@@ -21,7 +21,7 @@ Tips:
 3) num * 10 + digit appends the digit at the end of the number.
 
 
-Solution!
+Solution:
 
 public class Solution {
 	public int reverse(int A) {
