@@ -1,0 +1,66 @@
+Link --> https://www.interviewbit.com/problems/reverse-integer/
+
+Question --> You are given an integer N and the task is to reverse the digits of the given integer. Return 0 if the result overflows and does not fit in a 32 bit signed integer
+
+
+Look at the example for clarification.
+
+
+Approach --> Here are some good questions to ask before coding.
+
+If the integer’s last digit is 0, what should the output be? ie, cases such as 10, 100.
+
+Did you notice that the reversed integer might overflow? Assume the input is a 32-bit integer, then the reverse of 1000000003 overflows. How should you handle such cases?
+
+Tips:
+
+1) num % 10 gives you the last digit of a number.
+
+2) num / 10 gives you the number after removing the last digit.
+
+3) num * 10 + digit appends the digit at the end of the number.
+
+
+Solution!
+
+public class Solution {
+	public int reverse(int A) {
+	    int reverse = A;
+	    int sign = 1;
+	    
+	    if (A < 0) {
+	        A *= -1;
+	        sign = -1;
+	    }
+	    
+	    reverse = reverseOf(A);
+	    
+	    if (reverse == Integer.MIN_VALUE)
+	        return 0;
+	    
+        reverse *= sign;
+        
+	    return reverse;
+	    
+	}
+	
+	public int reverseOf(int num) {
+	    
+	    int newNum = 0;
+	    
+	    while (num > 0) {
+	        int digit = num % 10;
+	        
+	        if (newNum > Integer.MAX_VALUE / 10 || ((newNum == Integer.MAX_VALUE / 10) && digit > Integer.MAX_VALUE % 10)) {
+	            return Integer.MIN_VALUE;
+	        }
+	        
+	        newNum = newNum * 10 + digit;
+	        num /= 10;
+	    }
+	    
+	    return (int) newNum;
+	    
+	}
+	
+}
