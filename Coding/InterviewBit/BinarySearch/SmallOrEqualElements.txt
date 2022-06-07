@@ -1,0 +1,53 @@
+Link: --> https://www.interviewbit.com/problems/smaller-or-equal-elements/
+
+Question: --> Problem Description
+
+Given an sorted array A of size N. Find number of elements which are less than or equal to B.
+
+NOTE: Expected Time Complexity O(log N)
+
+
+
+Problem Constraints
+1 <= N <= 106
+
+1 <= A[i], B <= 10
+
+Approach: --> Use BinarySearch
+
+
+
+
+Solution:
+
+public class Solution {
+    public int solve(ArrayList<Integer> A, int B) {
+
+  int size = A.size();
+   int start=0,end=size-1,mid=0;
+
+if(A.get(0)> B)
+return 0;
+if(A.get(end) < B)
+return size;
+// 1 2 5 5 ,3 //0 3 1,2 3 2 ,2 1
+while(starte<=end)
+{
+    mid=(start+end)/2;
+   // System.out.println(mid+" "+s+" "+e);
+    int t=A.get(mid);
+    if(t == B){ 
+       while(mid<size && A.get(mid)==B)
+       mid++;
+       return mid;
+    }
+    else if(t<B)
+    start=mid+1;
+    else
+    end=mid-1;
+}
+
+return start;
+        
+    }
+}
