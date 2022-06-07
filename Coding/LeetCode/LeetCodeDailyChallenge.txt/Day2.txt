@@ -1,0 +1,32 @@
+Link: --> https://leetcode.com/problems/transpose-matrix/
+
+Question: --> Given a 2D integer array matrix, return the transpose of matrix.
+
+The transpose of a matrix is the matrix flipped over its main diagonal, switching the matrix's row and column indices.
+
+
+
+Solution: 
+Transpose of a matrix A is B such that
+A(i,j) = B(j,i)
+
+if A a have n row and m columns then B will have m rows and n columns.
+
+public int[][] transpose(int[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+        
+        int[][] res = new int[col][row];
+        for(int i = 0;i<row;i++) {
+            for(int j = 0;j<col;j++) {
+                res[j][i] = matrix[i][j];
+            }
+        }
+        
+        return res;
+    }
+T(n) = O(mn)
+S(n) =O(mn)
+
+Runtime: 1 ms, faster than 100% of Java online submissions for Transpose Matrix.
+Memory Usage: 48.6 MB, less than 90.25% of Java online submissions for Transpose Matrix.
