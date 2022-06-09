@@ -1,0 +1,53 @@
+Link: --> https://www.interviewbit.com/problems/median-of-array/
+
+Question: --> There are two sorted arrays A and B of size m and n respectively.
+
+Find the median of the two sorted arrays ( The median of the array formed by merging both the arrays ).
+
+The overall run time complexity should be O(log (m+n)).
+
+Approach: --> https://www.youtube.com/watch?v=ws98ud9uxl4
+
+
+
+Solution:
+public class Solution {
+	// DO NOT MODIFY BOTH THE LISTS
+    double median(final List<Integer> a, final List<Integer> b){
+        int beginA = 0;
+        int endA = a.size();
+        while(beginA<=endA){
+            int IndexA = beginA + ((endA-beginA)>>1);
+            int IndexB = ((a.size()+b.size()+1)>>1) - IndexA;
+
+            // for arrayList a
+            int min1 = (a.size()==IndexA)?Integer.MAX_VALUE:a.get(IndexA);
+            int max1 = (IndexA==0)?Integer.MIN_VALUE:a.get(IndexA-1);
+
+            // for arrayList b
+            int min2 = (b.size()==IndexB)?Integer.MAX_VALUE:b.get(IndexB);
+            int max2 = (IndexB==0)?Integer.MIN_VALUE:b.get(IndexB-1);
+
+
+            if((max1<=min2)&&(max2<=min1)){
+                if(((a.size()+b.size())&1)==0){
+                   return (double)(((Math.max(max1,max2))+(Math.min(min1,min2)))/2.0);
+                }else{
+                   return (double)((Math.max(max1,max2)));
+                }
+            }else if(max1>min2){
+                endA = IndexA -1;
+            }else{
+                beginA = IndexA +1;
+            }
+        }
+        return 0.0;
+    }
+	public double findMedianSortedArrays(final List<Integer> a, final List<Integer> b) {
+       if(a.size()<=b.size()){
+           return  median(a,b);
+       }else{
+           return median(b,a);
+       }
+	}
+}
