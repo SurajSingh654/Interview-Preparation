@@ -1,0 +1,33 @@
+Link: --> https://www.interviewbit.com/problems/amazing-subarrays/
+
+Question: --> You are given a string S, and you have to find all the amazing substrings of S.
+
+Amazing Substring is one that starts with a vowel (a, e, i, o, u, A, E, I, O, U).
+
+Input
+
+Only argument given is string S.
+Output
+
+Return a single integer X mod 10003, here X is number of Amazing Substrings in given string.
+Constraints
+
+1 <= length(S) <= 1e6
+S can have special characters
+
+Approach: Use BinarySearch in char Array ... for specific array element subarrays are totalLength-(index)
+
+
+Solution:
+public class Solution {
+    public int solve(String A) {
+       char[] arr = new char[]{'A','E','I','O','U','a','e','i','o','u'};
+       int sum = 0;
+        for(int i=0;i<A.length();i++){
+            if((Arrays.binarySearch(arr,A.charAt(i)))>=0){
+                sum = (sum + (A.length()-i)%10003)%10003;
+            }
+        }
+        return sum;
+    }
+}
