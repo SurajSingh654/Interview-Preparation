@@ -15,6 +15,13 @@ Important: --> Since the array is sorted, we can make some general observations:
              **> Larger sums would come from the right half of the array
              Therefore, using two pointers starting at the end points of the array, we can choose to increase or decrease our current sum however we like
 
+             The basic idea is that:
+
+             If our current sum is too small, move closer to the right.
+             If our current sum is too large, move closer to the left.
+
+That's really all there is to it! Since the array is sorted and we're guarranteed that there exists an answer,
+
 Explanation: --> https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/discuss/2128501/Two-Pointers-or-Visual-Explanation-JAVA
 
 
