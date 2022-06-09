@@ -1,0 +1,35 @@
+Link: --> https://www.interviewbit.com/problems/palindrome-string/
+
+Question: --> Given a string, determine if it is a palindrome. While checking for a palindrome, you have to ignore spaces, case, and all special characters; i.e. consider only alphanumeric characters.
+
+Approach: {Use Two Pointer Approach (start and end)} 
+
+
+
+
+Solution: 
+public class Solution {
+           boolean isCharOrNum(char c){
+        return ((c>='a')&&(c<='z'))||((c>='A')&&(c<='Z'))||((c>='0')&&(c<='9'));
+    }
+    public int isPalindrome(String s) {
+        int start = 0;
+        int end = s.length()-1;
+        while(start<end){
+                if((!isCharOrNum(s.charAt(start)))){
+                start++;
+                continue;
+            }
+            if((!isCharOrNum(s.charAt(end)))){
+                end--;
+                continue;
+            }
+            if(Character.toLowerCase(s.charAt(start))!=Character.toLowerCase(s.charAt(end))){
+                return 0;
+            }
+            start++;
+            end--;
+        }
+        return 1;
+    }
+}

@@ -168,6 +168,12 @@ The main difference between 1′ s complement and 2′ s complement is that 1′
 Another difference is that while adding numbers using 1′ s complement, we first do binary addition, then add in an end-around carry value. But, 2′ s complement has only one value for zero, and doesn’t require carry values.
 
 
+Important: About StringBuilder.append() vs String.concat() vs + operator --> https://javapapers.com/java/java-string-vs-stringbuilder-vs-stringbuffer-concatenation-performance-micro-benchmark/#:~:text=It%20is%20always%20better%20to,to%20concatenate%20two%20string%20values.
+
+StringBuffer.append is really worse for small numbers. The culprit is the synchronization of append method for thread safety. So stay away from it, if your program does not require synchronization. Unless if you need synchronization, StringBuilder.append always gives the best performance and it is the way to go.
+
+Explanation: If you feel ‘+’ is convenient and improves readability, it can be used if you are doing small number of appends (where there won’t be loops of large count). ‘+’ operator has no significant difference in performance with StringBuilder for small number of appends. As explained earlier, + internall uses StringBuilder only.
+
 TODO:  Taylor Series using Recursion
 TODO:  Taylor Series using Horner's Rule
 TODO:  Fibonnacci Series using Recursion & Memoization 
