@@ -1,0 +1,39 @@
+Link: --> https://www.interviewbit.com/problems/implement-power-function/
+
+Question: --> Implement pow(x, n) % d.
+In other words, given x, n and d,
+
+find (xn % d)
+
+Note that remainders on division cannot be negative. In other words, make sure the answer you return is non negative.
+
+Approach: --> --> a^b ==>{
+              a*a^{b-1}   , if b&1!=0
+              (a^2)*a^b/2  , if b&1===0
+          }
+Important: --> We always find remainder as (a%b + b)%b (add quotient to remainder and again take remainder) in order to avoid negative remainder.
+
+
+Solution: --> public class Solution {
+	public int pow(int x, int n, int d) {
+	    
+	    long a = x;
+	    long res = 1L;
+	    
+	    while (n > 0) {
+	        
+	        if (n % 2 == 1) {
+                res = (res*a%d)%d;
+	        }
+	        
+	        a = (a%d*a%d)%d;
+	        n = n >> 1;
+	        
+	    }
+	    
+	    res = (res%d + d) % d;
+	    
+	    return (int) res;
+	    
+	}
+}
