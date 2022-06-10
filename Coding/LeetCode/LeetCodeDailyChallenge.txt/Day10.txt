@@ -1,0 +1,33 @@
+Link: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+Question: Given a string s, find the length of the longest substring without repeating characters.
+
+ 
+ Approach: Sotre non-repeating characters in arraylist , when you encounter any previous character , change the arraylist elements remove those elements which are before repeating character 
+
+
+
+
+Explanation: https://leetcode.com/problems/longest-substring-without-repeating-characters/discuss/2132830/Visual-Explanation-or-Sliding-Window-JAVA
+
+Solution: 
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int size = s.length();
+        ArrayList<Character> list = new ArrayList<>(size);
+        int length = 0;
+        int start = 0;
+        while(start<size){
+            if(!list.contains(s.charAt(start))){
+                list.add(s.charAt(start));
+                start++;
+                continue;
+            }
+                length = Math.max(length,list.size());
+                
+               list = new ArrayList<>(list.subList(list.indexOf(s.charAt(start))+1,list.size()));
+        }
+        return Math.max(length,list.size());
+    }  
+}
