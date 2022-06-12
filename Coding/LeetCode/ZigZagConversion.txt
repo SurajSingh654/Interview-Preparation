@@ -1,0 +1,81 @@
+Link: https://leetcode.com/problems/zigzag-conversion/
+
+Question: The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
+
+P   A   H   N
+A P L S I I G
+Y   I   R
+And then read line by line: "PAHNAPLSIIGYIR"
+
+Write the code that will take a string and make this conversion given a number of rows:
+
+string convert(string s, int numRows);
+
+Approach: https://medium.com/@acinom/zigzag-conversion-c6827126e941
+
+Solution: 
+class Solution {
+    public String convert(String s, int nRow) {
+        if(nRow==1 || nRow==s.length()) return s;
+        int diag=nRow-2;
+        int colcount=0;
+        int len=s.length();
+        while(len>0){
+            len-=nRow;//first nRow elements come in a single column
+            colcount++;//so, for nRow elements column increases once. 
+            if(len>diag){
+                len-=diag;//Each diag element is taking place in different columns
+                colcount+=diag;//so, for each diag element column increases.
+            }
+            else if(len<=diag && len>0){
+                colcount+=len;// If length of unread elements is less than the diagonal len, then add just len to column count.
+            }
+        }
+		//Make matrix
+        len=s.length();
+        int col=0,k=0;
+        char[][] arr=new char[nRow][colcount];
+		//Initialise with *
+        for(int i=0;i<nRow;i++){
+            for(int j=0;j<colcount;j++){
+                arr[i][j]='*';
+            }
+        }
+		//Enter elements in zigzag fashion
+        while(len>0){
+            int i=0;
+            while(len>0 && i<nRow){
+            // for(int i=0;i<nRow;i++){
+                arr[i++][col]=s.charAt(k++);
+                len--;
+            }
+            
+            if(len>diag){
+                for(i=nRow-2;i>0;i--){
+                    ++col;
+                    arr[i][col]=s.charAt(k++);
+                    len--;
+                }
+            }
+            else if(len<=diag && len>0){
+                i=nRow-2;
+                while(len!=0){
+                    ++col;
+                    arr[i--][col]=s.charAt(k++);
+                    len--;
+                }
+            }
+            ++col;
+        }
+		
+		//Store the required pattern in a string and return that
+        String str="";
+        for(int i=0;i<nRow;i++){
+            for(int j=0;j<colcount;j++){
+                if(arr[i][j]!='*')
+                    str+=arr[i][j];
+            }
+        }
+        return str;
+    }
+}
