@@ -1,0 +1,3 @@
+Note: To optimise your code, look for inefficiencies or repetitive work in your current approach and see if you can negate them.
+
+Note: 
