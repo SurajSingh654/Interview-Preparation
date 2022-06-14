@@ -1,4 +1,4 @@
-Link: https://leetcode.com/problems/maximum-erasure-value/
+Note: https://leetcode.com/problems/maximum-erasure-value/
 
 Question: You are given an array of positive integers nums and want to erase a subarray containing unique elements. The score you get by erasing the subarray is equal to the sum of its elements.
 
@@ -6,8 +6,9 @@ Return the maximum score you can get by erasing exactly one subarray.
 
 An array b is called to be a subarray of a if it forms a contiguous subsequence of a, that is, if it is equal to a[l],a[l+1],...,a[r] for some (l,r).
 
-Approach: https://leetcode.com/problems/maximum-erasure-value/discuss/2140577/An-Interesting-Optimisation-or-JAVA-Explanation
 
+Approach: 1
+Take 2 pointers start and end ... Sum array elements upto when you encounter the repeating element... When you encounter repeating element store the summation in maxValue ...Update start and end pointers and repeat same step ...
 
 
 
@@ -37,3 +38,6 @@ class Solution {
         return Math.max(sum,maxValue);
     }
 }
+
+Approach: {Another}
+https://leetcode.com/problems/maximum-erasure-value/discuss/2140577/An-Interesting-Optimisation-or-JAVA-Explanation
